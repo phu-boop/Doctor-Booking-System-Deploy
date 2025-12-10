@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Wrapper - Same as Homepage */
+.auth-unified-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* Video Background - Same as Homepage */
+.auth-video-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.auth-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.auth-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.75) 0%,
+    rgba(30, 41, 59, 0.65) 50%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+  backdrop-filter: blur(1px);
+}
+
+/* Login Box - Glass Effect */
+.login-box {
+  position: relative;
+  width: 400px;
+  min-height: 450px;
+  background: transparent;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  z-index: 10;
+  transition: min-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-box.expanded {
+  min-height: 650px;
+}
+
+/* Form Container */
+.login-box form {
+  width: 100%;
+}
+
+/* Heading */
+h2 {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Input Box - Floating Labels */
+.input-box {
+  position: relative;
+  width: 100%;
+  margin: 30px 0;
+  border-bottom: 1px solid #fff;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+/* Collapsed state for signup-only fields */
+.input-box.collapsed {
+  max-height: 0;
+  margin: 0;
+  opacity: 0;
+  border-bottom: none;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
+
+.input-box.expanded {
+  max-height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Label */
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+  top: -5px;
+  font-size: 0.85em;
+}
+
+/* Input Field */
+.input-box input {
+  width: 100%;
+  height: 50px;
+  background: transparent !important;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #fff;
+  padding: 0 35px 0 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-box input:hover,
+.input-box input:focus,
+.input-box input:active {
+  background: transparent !important;
+}
+
+.input-box input::placeholder {
+  color: transparent;
+}
+
+/* Remove autofill background color */
+.input-box input:-webkit-autofill,
+.input-box input:-webkit-autofill:hover,
+.input-box input:-webkit-autofill:focus,
+.input-box input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px transparent !important;
+  background-color: transparent !important;
+}
+
+/* Firefox autofill */
+.input-box input:-moz-autofill,
+.input-box input:-moz-autofill-preview {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+/* Icon in Input */
+.input-box .icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  color: #fff;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  pointer-events: none;
+}
+
+.input-box .icon i {
+  width: 20px;
+  height: 20px;
+}
+
+/* Password Toggle Button - Match other icons style */
+.password-toggle-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 1.2em;
+}
+
+.password-toggle-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.password-toggle-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.password-toggle-btn i {
+  width: 20px;
+  height: 20px;
+}
+
+/* Remember & Forgot */
+.remember-forgot {
+  margin: -15px 0 15px;
+  font-size: 0.9em;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.remember-forgot label input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button - Rounded White */
+button[type="submit"] {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #000;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Register Link */
+.register-link {
+  font-size: 0.9em;
+  color: #fff;
+  text-align: center;
+  margin: 25px 0 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.register-link p {
+  margin: 0;
+}
+
+.register-link p a,
+.register-link button {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.register-link p a:hover,
+.register-link button:hover {
+  text-decoration: underline;
+}
+
+/* Error Message */
+.auth-error-message {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+/* Back to Home Button */
+.auth-back-home {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.auth-back-home:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-4px);
+}
+
+.auth-back-home i {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .login-box {
+    width: 100%;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+  }
+  
+  .input-box {
+    width: 100%;
+  }
+  
+  .auth-back-home {
+    top: 1rem;
+    left: 1rem;
+  }
+}
+
+/* Smooth transitions for form size changes */
+.login-box * {
+  transition-property: opacity, transform, max-height, margin;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
