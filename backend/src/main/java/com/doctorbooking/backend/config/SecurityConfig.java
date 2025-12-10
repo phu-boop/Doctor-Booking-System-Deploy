@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // Cấu hình quy tắc cho các request HTTP
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/public/**").permitAll()
+                        .requestMatchers("/api/public/**").permitAll()
                         // Cho phép OPTIONS requests (preflight) cho tất cả endpoints
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // Cho phép các endpoint authentication không cần xác thực
